@@ -17,14 +17,11 @@ const ViewRecipe = () => {
     username: "",
   });
 
-  // console.log(id);
   const loadRecipe = () => {
     getRecipesHome()
       .then((res) => {
         const filteredRecipes = res.find((recipe) => recipe._id === id);
-        // console.log('Recipes : ',res);
         setRecipe(filteredRecipes);
-        // console.log('Recipes : ',filteredRecipes);
       })
       .catch((err) => {
         console.log(err);
@@ -34,8 +31,6 @@ const ViewRecipe = () => {
   useEffect(() => {
     loadRecipe();
   }, []);
-
-  //   console.log(recipe);
 
   return (
     <>
@@ -48,7 +43,6 @@ const ViewRecipe = () => {
                   <picture className="rounded-lg overflow-hidden block">
                     <img
                       className="w-[1000px]"
-                      // src="https://picsum.photos/360/240"
                       src={`http://localhost:5000/uploads/${recipe.pic}`}
                     />
                   </picture>

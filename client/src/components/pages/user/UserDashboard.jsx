@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import UserAddRecipes from "./UserAddRecipes";
 
 //moment date-time format
-// import moment from "moment";
 import moment from "moment/min/moment-with-locales";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -55,12 +54,10 @@ const UserDashboard = () => {
   };
 
   const handleRemove = (id) => {
-    // console.log(id);
     if (window.confirm("Are you sure you want to remove")) {
       setLoading(true);
       removeRecipes(id, user.token)
         .then((res) => {
-          // console.log(res);
           loadRecipe(user.token, user.name);
           setLoading(false);
           toast.success("Remove " + res.data.name + " Success");
@@ -112,8 +109,6 @@ const UserDashboard = () => {
                       Add Recipes 🍲🍰☕
                     </div>
                   </div>
-                  {/* <UserAddRecipes onUpdateRecipeList={setRecipeList} /> */}
-                  {/* <UserAddRecipes /> */}
                   <UserAddRecipes setRecipeList={setRecipeList} />
                 </div>
               </div>
@@ -300,11 +295,6 @@ const UserDashboard = () => {
                               >
                                 <div className="flex flex-row">
                                   <div className="px-2">
-                                    {/* <Link to={`/user/update-recipe/` + recipeList[index]._id}>
-                                      <button className="block w-full py-1 px-2 bg-[rgba(243,185,95)] rounded-md text-[#e17511] hover:text-[#FFEAD2] hover:bg-[#f1a261] ">
-                                        <FontAwesomeIcon icon={faPenToSquare} />
-                                      </button>
-                                    </Link> */}
                                     <Link
                                       to={`/user/update-recipe/${recipeList[index]._id}`}
                                     >
@@ -316,17 +306,9 @@ const UserDashboard = () => {
                                   <div className="px-2">
                                     <button
                                       className="block w-full py-1 px-2 bg-[#e17511] rounded-md text-[#FFEAD2] hover:text-[#e17511] hover:bg-[#f1a261] "
-                                      // onClick={() =>
-                                      //   onClick(
-                                      //     recipeList.map((recipe) => ({
-                                      //       _id: recipe._id,
-                                      //     })),(index)
-                                      //   )
-                                      // }
                                       onClick={() =>
                                         handleRemove(recipeList[index]._id)
                                       }
-                                      // onClick={() => onClick(recipe._id)}
                                     >
                                       <FontAwesomeIcon icon={faTrash} />
                                     </button>

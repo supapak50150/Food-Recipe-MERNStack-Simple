@@ -7,8 +7,7 @@ const jwt = require("jsonwebtoken");
 //  @access      public
 exports.createRegister = async (req, res) => {
   const { name, password } = req.body;
-  //  req.body.name
-  //  req.body.password
+
   try {
     // Check if the user already exists
     let user = await User.findOne({ name }).exec();
@@ -40,13 +39,11 @@ exports.createRegister = async (req, res) => {
       res.json({ token });
     });
 
-    // res.send('user registered successfully');
   } catch (err) {
     // check error
     console.log(err.message);
     res.status(500).send("Server error");
   }
-  // res.send('Create Register new');
 };
 
 //  @route       POST http://localhost:5000/api/login
@@ -91,7 +88,6 @@ exports.login = async (req, res) => {
 //  @route       POST http://localhost:8000/api/current-user
 //  @desc        route current-user
 //  @access      private
-
 exports.currentUser = async (req, res) => {
   try {
     const user = await User.findOne({ name: req.user.name })
@@ -104,9 +100,3 @@ exports.currentUser = async (req, res) => {
   }
 };
 
-// exports.createRegister = async (req, res) => {
-//   res.send("Hello Register");
-// };
-// exports.login = async (req, res) => {
-//   res.send("Hello login");
-// };

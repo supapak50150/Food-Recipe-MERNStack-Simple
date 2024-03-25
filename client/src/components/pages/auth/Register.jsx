@@ -21,7 +21,6 @@ const Register = () => {
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
-  // console.log(name);
 
   const onSubmit = (e) => {
     setLoading(true);
@@ -37,13 +36,11 @@ const Register = () => {
       };
       resgisterHandler(newUser)
         .then((res) => {
-          // console.log(res);
           setLoading(false);
           toast.success("Registered successfully");
           navigate("/");
         })
         .catch((err) => {
-          // console.log(err.response);
           setLoading(false);
           toast.error(err.response.data.msg);
         });
@@ -100,7 +97,6 @@ const Register = () => {
               </div>
               <div className="mt-5 ">
                 <button
-                  // className="block w-full px-3.5 py-2 bg-[rgba(243,185,95)] rounded-md  shadow-[4px_4px_0px_0px_rgba(182,115,82)]"
                   className={`block w-full px-3.5 py-2 rounded-md shadow-[4px_4px_0px_0px_rgba(182,115,82)] ${
                     password.length < 6 ? 'bg-[rgba(243,185,95)]/50 cursor-not-allowed' : 'bg-[rgba(243,185,95)]'
                   }`}

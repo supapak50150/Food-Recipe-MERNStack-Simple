@@ -6,7 +6,6 @@ import { currentUser } from "../../functions/auth";
 
 const UserRoute = ({element: Element, ...rest }) => {
   const { user } = useSelector((state) => ({ ...state }));
-  // return user && user.token ? <Element {...rest} /> : <LoadingToRedirect />;
   
   const [ok, setOk] = useState(false);
 

@@ -26,7 +26,6 @@ const Nav = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
   const navigate = useNavigate();
-  // console.log("navbar", user);
 
   const [current, setCurrent] = useState("home");
   const onClick = (e) => {
@@ -175,43 +174,6 @@ const Nav = () => {
             </div>
 
             {/* Mobile Menu */}
-            {/* {isMenuOpen ? (
-              <ul className="flex-col md:hidden py-2">
-                <li className="py-2 hover:bg-gray-100/50 rounded-md">
-                  <Link to="/">
-                    <button className="text-navText text-lg font-medium text-left w-full">
-                      <FontAwesomeIcon
-                        icon={faCaretRight}
-                        className="text-navText"
-                      />
-                      <span className="ml-4">Home</span>
-                    </button>
-                  </Link>
-                </li>
-                <li className="py-2 hover:bg-gray-100/50 rounded-md">
-                  <Link to="/login">
-                    <button className="text-navText text-lg font-medium text-left w-full">
-                      <FontAwesomeIcon
-                        icon={faCaretRight}
-                        className="text-navText"
-                      />
-                      <span className="ml-4">Sign In</span>
-                    </button>
-                  </Link>
-                </li>
-                <li className="py-2 hover:bg-gray-100/50 rounded-md">
-                  <Link to="/register">
-                    <button className="text-navText text-lg font-medium text-left w-full">
-                      <FontAwesomeIcon
-                        icon={faCaretRight}
-                        className="text-navText"
-                      />
-                      <span className="ml-4">Sign Up</span>
-                    </button>
-                  </Link>
-                </li>
-              </ul>
-            ) : null} */}
             {isMenuOpen && (
               <ul className="flex-col md:hidden py-2">
                 <li className="py-2 hover:bg-gray-100/50 rounded-md">

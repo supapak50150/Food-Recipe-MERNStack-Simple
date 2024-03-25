@@ -27,12 +27,8 @@ import { currentUser } from "./components/functions/auth";
 
 function App() {
   const dispatch = useDispatch();
-  // const { userId } = useParams(); 
-  // console.log('HI',userId);
   useEffect(() => {
     const idTokenResult = localStorage.token;
-    // console.log("App", idTokenResult);
-
     if (idTokenResult) {
       currentUser(idTokenResult)
         .then((res) => {
@@ -62,13 +58,12 @@ function App() {
         <Route path="/recipe-detail/:id" element={<ViewRecipe />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {/* <Route path="/user/dashboard" element={<UserDashboard />} /> */}
         <Route
-            element={<UserRoute element={UserDashboard} />} // ใช้ component หรือ function ของ UserDashboard แทน JSX literal
+            element={<UserRoute element={UserDashboard} />} 
             path="/user/dashboard"
           />
         <Route
-            element={<UserRoute element={UserUpdateRecipe} />} // ใช้ component หรือ function ของ UserDashboard แทน JSX literal
+            element={<UserRoute element={UserUpdateRecipe} />}
             path="/user/update-recipe/:id"
           />
       </Routes>

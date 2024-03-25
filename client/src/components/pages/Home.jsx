@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import catCookingImage from "../../assets/catCooking.png"; // Import the image
 
 import { getRecipesHome } from "../functions/recipesCRUD";
+
 //moment date-time format
 import moment from "moment";
+
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -12,7 +14,6 @@ const Home = () => {
   const loadRecipe = () => {
     getRecipesHome()
       .then((res) => {
-        // console.log('Recipes : ',res);
         setRecipeList(res);
       })
       .catch((err) => {
@@ -23,8 +24,6 @@ const Home = () => {
   useEffect(() => {
     loadRecipe();
   }, []);
-
-  // console.log('Food Recipes : ',recipeList);
 
   const foodRecipes = recipeList.map((recipe) => ({
     name: recipe.name,
@@ -71,66 +70,6 @@ const Home = () => {
         <div className="mb-4 border-b pb-4 text-5xl leading-tight font-bold text-primaryText text-center">
         ✨ Recipe 🍲
         </div>
-
-        {/* <div className="flex mb-20">
-          <div className="p-4 m-2  bg-[#FFEAD2] shadow-[5px_5px_0px_0px_rgba(243,185,95)] rounded-xl  ">
-            <picture className="rounded-lg overflow-hidden block">
-              <img
-                className="hover:scale-125 ease-in duration-150"
-                src="https://picsum.photos/360/240"
-              />
-            </picture>
-
-            <h1 className="mt-4 mb-2 text-xl font-bold text-primaryText">
-              Recipe name
-            </h1>
-            <p className="leading-normal  text-secondaryText">
-              by Gojo127 : 12-12-2022{" "}
-            </p>
-            <div className="mt-2">
-              <button
-                type="button"
-                className="text-navText  bg-[#A6CF98] shadow-[4px_4px_0px_0px_rgba(85,124,85)]
-             font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2  "
-              >
-                Read more
-              </button>
-            </div>
-          </div>
-        </div> */}
-
-        {/* <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-          {[...Array(5)].map((_, index) => (
-            <div
-              key={index}
-              className={`p-4 m-2 bg-[#FFEAD2] shadow-[5px_5px_0px_0px_rgba(243,185,95)] rounded-xl ${
-                index === 2 ? "place-items-center" : ""
-              }`}
-            >
-              <picture className="rounded-lg overflow-hidden block">
-                <img
-                  className="hover:scale-125 ease-in duration-150"
-                  src="https://picsum.photos/360/240"
-                />
-              </picture>
-
-              <h1 className="mt-4 mb-2 text-xl font-bold text-primaryText">
-                Recipe name
-              </h1>
-              <p className="leading-normal text-secondaryText">
-                by Gojo127 : 12-12-2022
-              </p>
-              <div className="mt-2">
-                <button
-                  type="button"
-                  className="text-navText bg-[#A6CF98] shadow-[4px_4px_0px_0px_rgba(85,124,85)] font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
-                >
-                  Read more
-                </button>
-              </div>
-            </div>
-          ))}
-        </div> */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {foodRecipes.map((recipe, index) => (
             <div
@@ -143,8 +82,7 @@ const Home = () => {
               <picture className="rounded-lg overflow-hidden block">
                 <img
                   className="h-[200px] w-[400px] hover:scale-125 ease-in duration-150"
-                  src={`http://localhost:5000/uploads/${recipe.pic}`} // ใช้ค่า pic จาก foodRecipes ที่สร้างขึ้น
-                  alt={recipe.name} // เพิ่ม alt attribute สำหรับ accessibility
+                  src={`http://localhost:5000/uploads/${recipe.pic}`} 
                 />
               </picture>
               <h1 className="mt-4 mb-2 text-xl font-bold text-primaryText">

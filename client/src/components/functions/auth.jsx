@@ -14,7 +14,6 @@ export const resgisterHandler = async (user) => {
 export const loginHandler = async (user) => {
   return await axios.post(
     import.meta.env.VITE_REACT_APP_API + "/login",
-    // `${import.meta.env.VITE_REACT_APP_API}/login`,
     user,
     {
       headers: {

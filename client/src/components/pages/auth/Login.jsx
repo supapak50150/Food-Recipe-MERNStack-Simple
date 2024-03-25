@@ -21,7 +21,6 @@ const Login = () => {
 
   const roleBasedRedirect = (res) => {
     if (res === "user") {
-      // navigate("/user/dashboard");
       navigate(`/user/dashboard`);
     }
   };
@@ -53,9 +52,6 @@ const Login = () => {
         setLoading(false);
         toast.success("Login successfully");
         roleBasedRedirect(res.data.payload.user.role);
-        // navigate(`/user/dashboard/${res.data.payload.user._id}`);
-        // navigate(`/user/dashboard/`);
-
       })
       .catch((err) => {
         setLoading(false);

@@ -76,46 +76,18 @@ const UserAddRecipes = ({ setRecipeList }) => {
     setRecipeState({ ...recipe, instructions });
   };
 
-  // // Memoize Selector ด้วย useMemo
-  // const memoizedUser = useMemo(() => user, [user]);
-
   // submit recipe data to backend
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-
-    // const formData = new FormData();
-    // formData.append("file", file);
-    // // formData.append("data", recipe);
-    // formData.append("data", JSON.stringify(recipe)); // ต้องแปลงเป็น JSON ก่อนเพราะ FormData จะรับเฉพาะข้อมูลแบบ text หรือ binary เท่านั้น
-
-    //ตรวจสอบว่าข้อมูลถูก append ให้กับ FormData เป็นอ็อบเจกต์ของข้อมูลที่ป้อนเข้ามาในฟอร์ม
-    //   for (var pair of formData.entries()) {
-    //     console.log(pair[0]+ ', ' + pair[1]);
-    // }
-
-    
 
     const formData = new FormData();
     formData.append("data", JSON.stringify(recipe));
     formData.append("file", file);
     formData.append("name", user.name);
 
-    //ดูข้อมูลที่ถูก append ให้กับ FormData
-    // formData.forEach((value, key) => {
-    //   console.log(key, value);
-    // });
-
-    // createRecipes({ recipe}, user.token)
     createRecipes(formData, user.token)
       .then((res) => {
-        // console.log(res);
-        //   setRecipe(""); // เคลียร์ค่า name ให้เป็นค่าว่าง
-        //   // setFile(""); // เคลียร์ค่า file ให้เป็น null
-        // //   setFile(null);
-        // //   setFileName("Choose a file");
-        //   // console.log("Name after reset:", name);
-        //   // console.log("File after reset:", file);
         setRecipeState({
           name: "",
           ingredients: [{ name: "", quantity: "" }],
@@ -128,18 +100,12 @@ const UserAddRecipes = ({ setRecipeList }) => {
         setFile(null);
         setLoading(false);
         toast.success("Create " + res.data.name + " Success");
-        //   document.getElementById("createRecipeForm").reset();
-        //   // resetState();
-        // setRecipeList(prevRecipeList => [...prevRecipeList, recipe]);
         setRecipeList((prevRecipeList) => [res.data, ...prevRecipeList]);
       })
       .catch((err) => {
         setLoading(false);
         toast.error(err.response);
       });
-
-    // console.log(recipe);
-    // console.log(file);
   };
 
   return (
@@ -350,7 +316,7 @@ const UserAddRecipes = ({ setRecipeList }) => {
                 required
                 onChange={(e) => {
                   setFile(e.target.files[0]);
-                  setFileName(e.target.files[0].name); // Update filename state
+                  setFileName(e.target.files[0].name); 
                 }}
               />
             </div>
@@ -360,11 +326,10 @@ const UserAddRecipes = ({ setRecipeList }) => {
                 type="submit"
                 className={`block w-full px-3.5 py-2 rounded-md shadow-[4px_4px_0px_0px_rgba(182,115,82)] ${
                   Object.values(recipe).some((value) => value < 1) || !file
-                    ? // Object.values(recipe).some((value) => value < 1)
+                    ? 
                       "bg-[rgba(243,185,95)]/50 cursor-not-allowed"
                     : "bg-[#A6CF98] text-navText font-bold shadow-[5px_5px_0px_0px_rgba(85,124,85)] hover:shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]"
                 }`}
-                // disabled={Object.values(recipe).some((value) => value < 1) }
                 disabled={
                   Object.values(recipe).some((value) => value < 1) || !file
                 }

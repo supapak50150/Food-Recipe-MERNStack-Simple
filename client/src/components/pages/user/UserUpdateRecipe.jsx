@@ -81,28 +81,11 @@ const UserUpdateRecipe = () => {
     loadRecipe(id, user.token);
   }, [id, user.token]);
 
-  // useEffect(() => {
-  //   // ตั้งค่าค่าเริ่มต้นที่ใช้ใน input จาก res.data.pic
-  //   if (res.data) {
-  //     setFileName(res.data.pic); // ตั้งชื่อไฟล์เป็นชื่อที่ได้จาก res.data.pic
-  //   }
-  // }, [res.data]);
-
-  // // เมื่อมีการเลือกไฟล์ใหม่
-  // const handleFileChange = (e) => {
-  //   const selectedFile = e.target.files[0];
-  //   if (selectedFile) {
-  //     setFile(selectedFile);
-  //     setFileName(selectedFile.name);
-  //   }
-  // };
-
   const loadRecipe = (id, authtoken) => {
     getRecipe(id, authtoken)
       .then((res) => {
         setRecipeState(res.data);
         setFileName(res.data.pic);
-        // console.log(res.data.pic);
       })
       .catch((err) => {
         toast.error(err);
@@ -122,11 +105,9 @@ const UserUpdateRecipe = () => {
     formData.append("file", file);
     formData.append("fileName", filename);
 
-    // updateRecipes({ recipe }, id, user.token)
     updateRecipes(formData, id, user.token)
       .then((res) => {
         setLoading(false);
-        // loadRecipe(user.token);
         toast.success("Update " + res.data.name + " Success");
         navigate("/user/dashboard");
       })
@@ -356,7 +337,6 @@ const UserUpdateRecipe = () => {
                     <div className="flex justify-center mt-7 mb-7">
                       <img
                         class="h-[300px] max-w-md "
-                        // src={`http://localhost:5000/uploads/${fileName}`}
                         src={
                           file
                             ? URL.createObjectURL(file)
@@ -372,7 +352,7 @@ const UserUpdateRecipe = () => {
                       type="file"
                       onChange={(e) => {
                         setFile(e.target.files[0]);
-                        setFileName(e.target.files[0].name); // Update filename state
+                        setFileName(e.target.files[0].name); 
                       }}
                     />
                   </div>
@@ -387,7 +367,6 @@ const UserUpdateRecipe = () => {
                       disabled={Object.values(recipe).some(
                         (value) => value === ""
                       )}
-                      // className="bg-red-400"
                     >
                       Update
                     </button>
